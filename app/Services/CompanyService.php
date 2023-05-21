@@ -12,6 +12,11 @@ class CompanyService
         return Company::withCount('employees')->paginate(10);
     }
 
+    public function getAllForSelect()
+    {
+        return Company::select('id', 'name')->get()->pluck('name', 'id')->toArray();
+    }
+
     public function store($formData)
     {
         $company = Company::create([
